@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Shield Gateway | Kurumsal Yapay Zeka DLP ve Güvenlik Proxy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-slate-900 text-white font-sans antialiased">
+
+    <!-- Header -->
+    <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center text-slate-950 font-bold">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <span class="text-xl font-bold tracking-wide">AI Shield <span class="text-emerald-400">Gateway</span></span>
+            </div>
+            <nav class="hidden md:flex gap-8 text-sm font-medium text-slate-300">
+                <a href="#ozellikler" class="hover:text-emerald-400 transition">Özellikler</a>
+                <a href="#demo" class="hover:text-emerald-400 transition">Canlı Demo</a>
+                <a href="#fiyatlandirma" class="hover:text-emerald-400 transition">Fiyatlandırma</a>
+            </nav>
+            <a href="#iletisim" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-5 py-2.5 rounded-lg text-sm font-semibold transition">Demo Talebi</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto px-6 py-20 text-center">
+        <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase">
+            Özel Erişim · Geliştirme Sürümü
+        </span>
+        <h1 class="text-4xl md:text-6xl font-extrabold mt-6 leading-tight">
+            Şirket Verilerinizi LLM'lere Gönderirken <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">KVKK & GDPR Riski Almayın</span>
+        </h1>
+        <p class="text-slate-400 max-w-2xl mx-auto mt-6 text-lg">
+            ChatGPT, Gemini ve Claude kullanırken kişisel verileri (PII), müşteri isimlerini ve hassas kodları anlık olarak maskeleyin. Yapay zekâ yanıt verdiğinde verileri otomatik birleştirin.
+        </p>
+        <div class="mt-8 flex justify-center gap-4">
+            <a href="#demo" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-8 py-3.5 rounded-xl font-bold transition">Hemen Deneyin</a>
+            <a href="#fiyatlandirma" class="border border-slate-700 hover:border-slate-500 px-8 py-3.5 rounded-xl font-bold transition">Fiyatlandırma</a>
+        </div>
+    </section>
+
+    <!-- Demo Mockup Section (Ekran Görüntüsü Tabanlı) -->
+    <section id="demo" class="max-w-4xl mx-auto px-6 pb-20">
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 shadow-2xl">
+            <div class="text-sm font-medium text-slate-400 mb-4">Hangi yapay zekâ ile konuşmak istersiniz?</div>
+            <div class="grid grid-cols-3 gap-3 mb-6">
+                <button class="border border-slate-800 py-2.5 rounded-xl text-slate-400 text-sm font-semibold">ChatGPT</button>
+                <button class="bg-emerald-500/10 border border-emerald-500 text-emerald-400 py-2.5 rounded-xl text-sm font-semibold flex items-center justify-center gap-2">
+                    <span class="w-2 h-2 bg-emerald-400 rounded-full"></span> Gemini
+                </button>
+                <button class="border border-slate-800 py-2.5 rounded-xl text-slate-400 text-sm font-semibold">Claude</button>
+            </div>
+
+            <!-- Message Box -->
+            <div class="space-y-4">
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-4">
+                    <div class="text-xs text-emerald-400 font-semibold mb-1">Siz</div>
+                    <div class="text-sm text-slate-200">
+                        Bir öğrencimin adı sümeyye bulut almaz diğer öğrencim ise ayten kulak diğer kişi ise ahmet aymaz bulak
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-slate-800/80 text-xs text-amber-400/90 flex items-center gap-2">
+                        <i class="fa-solid fa-user-shield"></i>
+                        <span>Yapay zekâdan gizlenenler: sümeyye bulut almaz, ayten kulak, ahmet aymaz bulak</span>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900/50 border border-slate-800/50 rounded-xl p-4">
+                    <div class="text-xs text-cyan-400 font-semibold mb-1">Gemini (AI Shield Onaylı)</div>
+                    <div class="text-sm text-slate-300">
+                        Anladığım kadarıyla öğrencinizin adı Ayten Kulak, diğer kişinin adı ise Ahmet Aymaz Bulak. Sizin için bu verileri güvenle işledim.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-8 text-center text-xs text-slate-500">
+        © 2026 AI Shield Gateway. Tüm hakları saklıdır. KVKK ve GDPR Uyumlu Kurumsal DLP Çözümü.
+    </footer>
+</body>
+</html>
