@@ -1,87 +1,460 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Shield Gateway | Kurumsal Yapay Zeka DLP ve Güvenlik Proxy</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b121c">
+<meta name="description" content="AI Shield Gateway, şirketlerin üretken yapay zekâ kullanımında hassas verilerin dış servislere aktarılma riskini azaltmayı hedefleyen geliştirme aşamasındaki güvenlik katmanı projesidir.">
+<title>AI Shield Gateway | Kurumsal Yapay Zekâ Kullanımında Veri Koruması</title>
+
+<style>
+:root {
+color-scheme: dark;
+--bg: #0b121c;
+--panel: #14202d;
+--line: #344653;
+--text: #f1f6f6;
+--muted: #c0ccd0;
+--accent: #79dbc6;
+}
+
+* { box-sizing: border-box; }
+
+body {
+margin: 0;
+background: var(--bg);
+color: var(--text);
+font: 16px/1.7 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+body::before {
+content: "";
+position: absolute;
+inset: 0 0 auto;
+height: 680px;
+background: radial-gradient(ellipse at 75% 15%, #12383a, transparent 55%);
+pointer-events: none;
+}
+
+.wrap {
+width: min(1060px, calc(100% - 40px));
+margin: auto;
+position: relative;
+}
+
+.header { border-bottom: 1px solid #ffffff20; }
+
+.header .wrap {
+min-height: 85px;
+display: flex;
+align-items: center;
+}
+
+.brand {
+display: inline-flex;
+align-items: center;
+gap: 14px;
+font-size: 1.16rem;
+font-weight: 750;
+line-height: 1.2;
+}
+
+.brand svg {
+width: 43px;
+height: 48px;
+flex: none;
+}
+
+main section {
+padding: 92px 0;
+border-bottom: 1px solid #ffffff20;
+}
+
+.hero { padding: 112px 0 120px; }
+
+.eyebrow {
+display: block;
+margin-bottom: 20px;
+color: var(--accent);
+font-size: .77rem;
+font-weight: 750;
+text-transform: uppercase;
+letter-spacing: .16em;
+}
+
+h1, h2, h3, p { margin-top: 0; }
+
+h1 {
+max-width: 930px;
+margin-bottom: 28px;
+font-size: clamp(2.7rem, 6vw, 5.1rem);
+line-height: 1.12;
+letter-spacing: -.052em;
+}
+
+h2 {
+max-width: 850px;
+margin-bottom: 24px;
+font-size: clamp(2rem, 4vw, 3.1rem);
+line-height: 1.2;
+letter-spacing: -.04em;
+}
+
+h3 {
+margin-bottom: 8px;
+font-size: 1.1rem;
+}
+
+.lead {
+max-width: 800px;
+color: #dce7e7;
+font-size: clamp(1.1rem, 1.7vw, 1.33rem);
+}
+
+.muted {
+max-width: 790px;
+color: var(--muted);
+}
+
+/* Üç adımlı dairesel akış */
+.cycle {
+position: relative;
+height: 520px;
+margin: 28px 0 36px;
+isolation: isolate;
+}
+
+.cycle-arrows {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+z-index: -1;
+overflow: visible;
+}
+
+.cycle-node {
+position: absolute;
+width: 220px;
+height: 220px;
+border-radius: 50%;
+border: 1px solid #609e92;
+background: radial-gradient(circle at 35% 24%, #1b3941, #132332 72%);
+box-shadow: 0 0 0 8px #77dec409;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 24px;
+text-align: center;
+line-height: 1.35;
+font-size: 1.02rem;
+font-weight: 680;
+}
+
+.cycle-node b {
+display: block;
+margin-bottom: 12px;
+color: var(--accent);
+font-size: .79rem;
+letter-spacing: .08em;
+}
+
+.cycle-node:nth-of-type(1) {
+top: 0;
+left: 50%;
+transform: translateX(-50%);
+}
+
+.cycle-node:nth-of-type(2) {
+right: 2%;
+bottom: 0;
+}
+
+.cycle-node:nth-of-type(3) {
+left: 2%;
+bottom: 0;
+}
+
+.example {
+margin-top: 34px;
+padding: 29px;
+border: 1px solid #47726f;
+border-radius: 18px;
+background: linear-gradient(135deg, #162c35, #121e2a);
+}
+
+.example-grid {
+display: grid;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: 22px;
+}
+
+.example small {
+display: block;
+margin-bottom: 10px;
+color: var(--muted);
+}
+
+.example p {
+margin: 0;
+font-size: 1.08rem;
+}
+
+.highlight {
+color: var(--accent);
+font-weight: 750;
+}
+
+.principle {
+background: linear-gradient(110deg, #102522, #101b29);
+}
+
+.disclaimer {
+max-width: 830px;
+margin: 32px 0 0;
+padding-left: 17px;
+border-left: 2px solid var(--accent);
+color: var(--muted);
+font-size: .94rem;
+}
+
+footer { padding: 54px 0 34px; }
+
+.footer-row, .bottom {
+display: flex;
+justify-content: space-between;
+gap: 35px;
+flex-wrap: wrap;
+}
+
+.footer-row p, .bottom p {
+margin: 5px 0;
+color: var(--muted);
+}
+
+.founders-label {
+display: block;
+margin-bottom: 9px;
+color: var(--accent);
+font-size: .77rem;
+font-weight: 700;
+letter-spacing: .13em;
+text-transform: uppercase;
+}
+
+.bottom {
+margin-top: 43px;
+padding-top: 21px;
+border-top: 1px solid var(--line);
+gap: 15px;
+font-size: .83rem;
+}
+
+@media (max-width: 700px) {
+.wrap { width: calc(100% - 32px); }
+
+main section { padding: 68px 0; }
+
+.hero { padding: 85px 0; }
+
+.cycle {
+height: auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 48px;
+}
+
+.cycle-arrows { display: none; }
+
+.cycle-node:nth-of-type(n) {
+position: relative;
+top: auto;
+right: auto;
+bottom: auto;
+left: auto;
+transform: none;
+width: min(220px, 75vw);
+height: min(220px, 75vw);
+}
+
+.cycle-node:not(:last-child)::after {
+content: "↓";
+position: absolute;
+top: calc(100% + 11px);
+left: 50%;
+transform: translateX(-50%);
+color: var(--accent);
+font-size: 1.45rem;
+font-weight: 400;
+}
+
+.example-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
-<body class="bg-slate-900 text-white font-sans antialiased">
 
-    <!-- Header -->
-    <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center text-slate-950 font-bold">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
-                <span class="text-xl font-bold tracking-wide">AI Shield <span class="text-emerald-400">Gateway</span></span>
-            </div>
-            <nav class="hidden md:flex gap-8 text-sm font-medium text-slate-300">
-                <a href="#ozellikler" class="hover:text-emerald-400 transition">Özellikler</a>
-                <a href="#demo" class="hover:text-emerald-400 transition">Canlı Demo</a>
-                <a href="#fiyatlandirma" class="hover:text-emerald-400 transition">Fiyatlandırma</a>
-            </nav>
-            <a href="#iletisim" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-5 py-2.5 rounded-lg text-sm font-semibold transition">Demo Talebi</a>
-        </div>
-    </header>
+<body>
+<header class="header">
+<div class="wrap">
+<div class="brand" aria-label="AI Shield Gateway">
+<svg viewBox="0 0 44 48" fill="none" aria-hidden="true">
+<path d="M22 3 40 10v13c0 11-7 18-18 23C11 41 4 34 4 23V10L22 3Z"
+stroke="#79dbc6" stroke-width="2"/>
+<path d="m13 24 6 6 12-14"
+stroke="#79dbc6" stroke-width="2.5"
+stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<span>AI Shield Gateway</span>
+</div>
+</div>
+</header>
 
-    <!-- Hero Section -->
-    <section class="max-w-7xl mx-auto px-6 py-20 text-center">
-        <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase">
-            Özel Erişim · Geliştirme Sürümü
-        </span>
-        <h1 class="text-4xl md:text-6xl font-extrabold mt-6 leading-tight">
-            Şirket Verilerinizi LLM'lere Gönderirken <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">KVKK & GDPR Riski Almayın</span>
-        </h1>
-        <p class="text-slate-400 max-w-2xl mx-auto mt-6 text-lg">
-            ChatGPT, Gemini ve Claude kullanırken kişisel verileri (PII), müşteri isimlerini ve hassas kodları anlık olarak maskeleyin. Yapay zekâ yanıt verdiğinde verileri otomatik birleştirin.
-        </p>
-        <div class="mt-8 flex justify-center gap-4">
-            <a href="#demo" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-8 py-3.5 rounded-xl font-bold transition">Hemen Deneyin</a>
-            <a href="#fiyatlandirma" class="border border-slate-700 hover:border-slate-500 px-8 py-3.5 rounded-xl font-bold transition">Fiyatlandırma</a>
-        </div>
-    </section>
+<main>
+<section class="hero" aria-labelledby="hero-title">
+<div class="wrap">
+<span class="eyebrow">Şirketler için geliştirilen veri gizliliği yaklaşımı</span>
+<h1 id="hero-title">Kurumsal verileriniz yapay zekâya gitmeden önce korunsun.</h1>
+<p class="lead">
+AI Shield Gateway, çalışanlar üretken yapay zekâ araçlarını kullanırken
+kişisel ve şirkete ait hassas bilgileri tespit edip maskelemeyi
+hedefleyen bir güvenlik katmanı projesidir.
+</p>
+<p class="muted">
+Amaç, şirketlerin yapay zekâ kullanımında gereksiz veri paylaşımı
+riskini azaltmaktır.
+</p>
+</div>
+</section>
 
-    <!-- Demo Mockup Section (Ekran Görüntüsü Tabanlı) -->
-    <section id="demo" class="max-w-4xl mx-auto px-6 pb-20">
-        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 shadow-2xl">
-            <div class="text-sm font-medium text-slate-400 mb-4">Hangi yapay zekâ ile konuşmak istersiniz?</div>
-            <div class="grid grid-cols-3 gap-3 mb-6">
-                <button class="border border-slate-800 py-2.5 rounded-xl text-slate-400 text-sm font-semibold">ChatGPT</button>
-                <button class="bg-emerald-500/10 border border-emerald-500 text-emerald-400 py-2.5 rounded-xl text-sm font-semibold flex items-center justify-center gap-2">
-                    <span class="w-2 h-2 bg-emerald-400 rounded-full"></span> Gemini
-                </button>
-                <button class="border border-slate-800 py-2.5 rounded-xl text-slate-400 text-sm font-semibold">Claude</button>
-            </div>
+<section aria-labelledby="problem-title">
+<div class="wrap">
+<span class="eyebrow">Sorun</span>
+<h2 id="problem-title">Bir çalışanın yazdığı prompt, şirket verisi içerebilir.</h2>
+<p class="lead">
+Bir çalışan, işini hızlandırmak için yapay zekâya soru sorarken
+şirketin koruması gereken bilgileri de paylaşabilir.
+</p>
+<p class="muted">
+Bu durum, şirketlerin veri gizliliği ve bilgi güvenliği süreçlerinde
+yönetmesi gereken bir risk oluşturur.
+</p>
+</div>
+</section>
 
-            <!-- Message Box -->
-            <div class="space-y-4">
-                <div class="bg-slate-900 border border-slate-800 rounded-xl p-4">
-                    <div class="text-xs text-emerald-400 font-semibold mb-1">Siz</div>
-                    <div class="text-sm text-slate-200">
-                        Bir öğrencimin adı sümeyye bulut almaz diğer öğrencim ise ayten kulak diğer kişi ise ahmet aymaz bulak
-                    </div>
-                    <div class="mt-3 pt-3 border-t border-slate-800/80 text-xs text-amber-400/90 flex items-center gap-2">
-                        <i class="fa-solid fa-user-shield"></i>
-                        <span>Yapay zekâdan gizlenenler: sümeyye bulut almaz, ayten kulak, ahmet aymaz bulak</span>
-                    </div>
-                </div>
+<section aria-labelledby="solution-title">
+<div class="wrap">
+<span class="eyebrow">Yaklaşım</span>
+<h2 id="solution-title">
+Yapay zekâya gönderilmeden önce hassas bilgiyi değiştirmeyi hedefler.
+</h2>
 
-                <div class="bg-slate-900/50 border border-slate-800/50 rounded-xl p-4">
-                    <div class="text-xs text-cyan-400 font-semibold mb-1">Gemini (AI Shield Onaylı)</div>
-                    <div class="text-sm text-slate-300">
-                        Anladığım kadarıyla öğrencinizin adı Ayten Kulak, diğer kişinin adı ise Ahmet Aymaz Bulak. Sizin için bu verileri güvenle işledim.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="cycle" role="group" aria-label="Planlanan üç adımlı çalışma akışı">
+<svg class="cycle-arrows" viewBox="0 0 1000 520"
+preserveAspectRatio="none" aria-hidden="true">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9"
+refX="7" refY="4.5" orient="auto">
+<path d="M1 1 L8 4.5 L1 8" fill="none"
+stroke="#79dbc6" stroke-width="1.5"/>
+</marker>
+</defs>
+<path d="M615 112 C760 125 835 203 839 266"
+fill="none" stroke="#79dbc6" stroke-width="2.5"
+marker-end="url(#arrow)"/>
+<path d="M736 450 C615 519 386 519 265 450"
+fill="none" stroke="#79dbc6" stroke-width="2.5"
+marker-end="url(#arrow)"/>
+<path d="M160 266 C164 203 240 125 385 112"
+fill="none" stroke="#79dbc6" stroke-width="2.5"
+marker-end="url(#arrow)"/>
+</svg>
 
-    <!-- Footer -->
-    <footer class="border-t border-slate-800 py-8 text-center text-xs text-slate-500">
-        © 2026 AI Shield Gateway. Tüm hakları saklıdır. KVKK ve GDPR Uyumlu Kurumsal DLP Çözümü.
-    </footer>
+<div class="cycle-node">
+<b>01</b>
+Çalışan sorusunu yazar.
+</div>
+<div class="cycle-node">
+<b>02</b>
+Gateway hassas bilgiyi tespit edip geçici bir temsilciyle değiştirir.
+</div>
+<div class="cycle-node">
+<b>03</b>
+Yapay zekâ yanıtı yetkili kullanıcıya uygun biçimde sunulur.
+</div>
+</div>
+
+<p class="muted">
+Bu, geliştirilmesi hedeflenen akıştır; veri tespiti ve geri
+eşleştirme doğruluğu ayrıca test edilmelidir.
+</p>
+
+<div class="example">
+<h3>Kısa bir örnek</h3>
+<div class="example-grid">
+<div>
+<small>Çalışanın yazdığı</small>
+<p>“<span class="highlight">Ayten Kulak</span> için hazırlanan müşteri notunu özetle.”</p>
+</div>
+<div>
+<small>Dış modele gönderilmesi hedeflenen biçim</small>
+<p>“<span class="highlight">[KISI_001]</span> için hazırlanan müşteri notunu özetle.”</p>
+</div>
+<div>
+<small>Yetkili kullanıcıya gösterilen örnek yanıt</small>
+<p>“<span class="highlight">Ayten Kulak</span> için hazırlanan müşteri notunun özeti...”</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="principle" aria-labelledby="principle-title">
+<div class="wrap">
+<span class="eyebrow">Temel prensip</span>
+<h2 id="principle-title">Gerçek veri mümkün olduğunca kurum tarafında kalır.</h2>
+<p class="lead">
+AI Shield Gateway, yapay zekâya gönderilmesi gerekmeyen hassas
+bilgileri maskeleyerek dış servise aktarılan gerçek veriyi
+azaltmayı hedefler.
+</p>
+<p class="disclaimer">
+AI Shield Gateway geliştirme aşamasındaki bir projedir. Veri tespit
+doğruluğu, kullanılan model, yapılandırma ve veri türüne göre
+değişebilir. Sistem tek başına KVKK veya GDPR uyumluluğu garantisi
+olarak değerlendirilmemelidir.
+</p>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="wrap">
+<div class="footer-row">
+<div>
+<div class="brand">
+<svg viewBox="0 0 44 48" fill="none" aria-hidden="true">
+<path d="M22 3 40 10v13c0 11-7 18-18 23C11 41 4 34 4 23V10L22 3Z"
+stroke="#79dbc6" stroke-width="2"/>
+<path d="m13 24 6 6 12-14"
+stroke="#79dbc6" stroke-width="2.5"
+stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<span>AI Shield Gateway</span>
+</div>
+<p>Privacy-Preserving AI Gateway</p>
+</div>
+<div>
+<span class="founders-label">Kurucular</span>
+<p>Ere Karadağ · Dilek Buldu</p>
+</div>
+</div>
+<div class="bottom">
+<p>© 2026 AI Shield Gateway</p>
+<p>Development Project / Geliştirme Aşamasında</p>
+</div>
+</div>
+</footer>
 </body>
 </html>
